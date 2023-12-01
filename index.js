@@ -13,12 +13,12 @@ const redoc = require('redoc-express')
 const request = require('supertest');//-----------------------SUPERTEST-----------------------
 const {PORT, HOST, USER, PASSWORD, DATABASE} = require('./config');
 // import { PORT,HOST,USER,PASSWORD,DATABASE, PORT } from './config';
-const con =  mysql.createConnection({
+const con = {
     host:HOST, 
     user:USER, 
     password:PASSWORD, 
     database:DATABASE
-});
+}
 // const PORT=PORT
 
 // const conn = await mysql.createConnection({
