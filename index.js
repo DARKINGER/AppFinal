@@ -88,7 +88,7 @@ app.get("/info", async (req, res)=> {
 app.get("/usuarios", async (req, res)=> {
     try{
         const conn = await mysql.createConnection(con)
-        const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos');
+        const [rows, fields] = await conn.query('SELECT * FROM alumnos');
         res.json(rows);
     }catch(err){
         console.log(err);
@@ -112,7 +112,7 @@ app.get("/usuarios/error", async (req, res)=> {
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         const conn = await mysql.createConnection(con)
 
-        const [rows, fields] = await conn.query('SELEC * FROM hola.alumnos');
+        const [rows, fields] = await conn.query('SELEC * FROM alumnos');
         res.json(rows);
     } catch(err) {
         res.status(500).json({mensaje: err.sqlMessage});
@@ -143,7 +143,7 @@ app.get("/usuarios/:id", async(req, res)=> {
     const parametros = req.params.id
     console.log(parametros);
     //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
-    const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos WHERE id=' + req.params.id);
+    const [rows, fields] = await conn.query('SELECT * FROM alumnos WHERE id=' + req.params.id);
     if(rows.length == 0) {
         res.status(404).json({mensaje: 'Usuario no existe'});
     } else {
@@ -175,7 +175,7 @@ app.delete("/usuarios", async(req, res)=> {
         const conn = await mysql.createConnection(con)
 
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
-        const [rows, fields] = await conn.query(`DELETE FROM hola.alumnos WHERE id=+${req.query.id}`);
+        const [rows, fields] = await conn.query(`DELETE FROM alumnos WHERE id=+${req.query.id}`);
         res.json(rows);
     } catch(err) {
         res.status(404).json({mensaje: err.sqlMessage})
@@ -211,7 +211,7 @@ app.post("/usuarios", async(req, res)=> {
                 const conn = await mysql.createConnection(con)
 
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
-        const [rows, fields] = await conn.query(`INSERT INTO hola.alumnos (nombre, Ncontrol) values ("${req.query.nombre}", ${req.query.Ncontrol});`);
+        const [rows, fields] = await conn.query(`INSERT INTO alumnos (nombre, Ncontrol) values ("${req.query.nombre}", ${req.query.Ncontrol});`);
         res.json(rows);
     } catch(err) {
         res.json({mensaje: err.sqlMessage})
