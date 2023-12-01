@@ -1,12 +1,15 @@
-import { Config } from 'dotenv'
+// import { Config } from 'dotenv'
+require('dotenv').config()
 
-config()
+// config()
 
-export const PORT = process.env.PORT || 8085
-export const HOST = process.env.HOST || 'localhost'
-export const USER = process.env.USER || 'admin'
-export const PASSWORD = process.env.PASSWORD || 'Dima.zdla1'
-export const DATABASE = process.env.DATABASE || 'hola'
+const PORT = process.env.PORT || 8085
+const HOST = process.env.HOST || 'localhost'
+const USER = process.env.USER || 'admin'
+const PASSWORD = process.env.PASSWORD || 'Dima.zdla1'
+const DATABASE = process.env.DATABASE || 'hola'
 // export const HOST = process.env.HOST || 'localhost'
 
-
+module.exports = {
+    PORT, HOST, USER, PASSWORD, DATABASE
+}
