@@ -13,7 +13,7 @@ const redoc = require('redoc-express')
 const request = require('supertest');//-----------------------SUPERTEST-----------------------
 const {PORT, HOST, USER, PASSWORD, DATABASE} = require('./config');
 // import { PORT,HOST,USER,PASSWORD,DATABASE, PORT } from './config';
-var conn =  mysql.createConnection({
+var con =  mysql.createConnection({
     host:HOST, 
     user:USER, 
     password:PASSWORD, 
@@ -63,7 +63,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.get("/info", async (req, res)=> {
     try {
-        //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
+        // const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         // const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos');
         res.json({host: HOST, user: USER, password:PASSWORD, database:DATABASE});
     } catch(err) {
@@ -87,12 +87,7 @@ app.get("/info", async (req, res)=> {
  */
 app.get("/usuarios", async (req, res)=> {
     try{
-        conn = await mysql.createConnection({
-            host:HOST, 
-            user:USER, 
-            password:PASSWORD, 
-            database:DATABASE
-        });
+        const conn = await mysql.createConnection(con)
         const [rows, fields] = await conn.query('SELECT * FROM hola.alumnos');
         res.json(rows);
     }catch(err){
@@ -115,12 +110,8 @@ app.get("/usuarios", async (req, res)=> {
 app.get("/usuarios/error", async (req, res)=> {
     try {
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
-        conn = await mysql.createConnection({
-            host:HOST, 
-            user:USER, 
-            password:PASSWORD, 
-            database:DATABASE
-        });
+        const conn = await mysql.createConnection(con)
+
         const [rows, fields] = await conn.query('SELEC * FROM hola.alumnos');
         res.json(rows);
     } catch(err) {
@@ -147,12 +138,8 @@ app.get("/usuarios/error", async (req, res)=> {
  *         description: Usuario no encontrado.
  */
 app.get("/usuarios/:id", async(req, res)=> {
-    conn = await mysql.createConnection({
-        host:HOST, 
-        user:USER, 
-        password:PASSWORD, 
-        database:DATABASE
-    });
+    const conn = await mysql.createConnection(con)
+
     const parametros = req.params.id
     console.log(parametros);
     //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
@@ -185,12 +172,8 @@ app.get("/usuarios/:id", async(req, res)=> {
 app.delete("/usuarios", async(req, res)=> {
     console.log(req.query);
     try {
-        conn = await mysql.createConnection({
-            host:HOST, 
-            user:USER, 
-            password:PASSWORD, 
-            database:DATABASE
-        });
+        const conn = await mysql.createConnection(con)
+
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         const [rows, fields] = await conn.query(`DELETE FROM hola.alumnos WHERE id=+${req.query.id}`);
         res.json(rows);
@@ -225,12 +208,8 @@ app.delete("/usuarios", async(req, res)=> {
  */
 app.post("/usuarios", async(req, res)=> {
     try {
-        conn = await mysql.createConnection({
-            host:HOST, 
-            user:USER, 
-            password:PASSWORD, 
-            database:DATABASE
-        });
+                const conn = await mysql.createConnection(con)
+
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         const [rows, fields] = await conn.query(`INSERT INTO hola.alumnos (nombre, Ncontrol) values ("${req.query.nombre}", ${req.query.Ncontrol});`);
         res.json(rows);
@@ -264,12 +243,8 @@ app.post("/usuarios", async(req, res)=> {
  */
 app.put("/usuarios/upload", async(req, res)=> {
     try {
-        conn = await mysql.createConnection({
-            host:HOST, 
-            user:USER, 
-            password:PASSWORD, 
-            database:DATABASE
-        });
+               const conn = await mysql.createConnection(con)
+
         //const conn = await mysql.createConnection({host:'localhost', user:'admin', password:'Dima.zdla1', database:'hola'});
         const objetoA = req.body;
         console.log(req.body);
