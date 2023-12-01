@@ -253,7 +253,7 @@ app.put("/usuarios/upload", async(req, res)=> {
         let valores = Object.values(objetoA);
         console.log(campos);
 
-        let sentencia = "UPDATE hola.alumnos SET "
+        let sentencia = "UPDATE alumnos SET "
         let sentencia2 = ""
         let where = "WHERE (id = "
 

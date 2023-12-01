@@ -4,7 +4,8 @@
   "description": "Este es un texto de prueba para conocer la documentacion de prueba.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node ./index.js"
   },
   "keywords": [],
   "author": "",
