@@ -87,6 +87,7 @@ app.get("/info", async (req, res)=> {
  */
 app.get("/usuarios", async (req, res)=> {
     try{
+        console.log('entra a la ruta')
         const conn = await mysql.createConnection(con)
         const [rows, fields] = await conn.query('SELECT * FROM alumnos');
         res.json(rows);
