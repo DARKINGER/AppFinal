@@ -1,4 +1,4 @@
-
+const cores= require('cores')
 const express = require('express');
 const morgan = require('morgan');
 const fs = require('fs');
@@ -44,6 +44,7 @@ const options = {
 
 var accesLogStream = fs.createWriteStream(path.join(__dirname, 'acces.Log'), {flags: 'a'});
 app.use(morgan('combined', {stream: accesLogStream}));
+app.use(cors());
 
 //referente a el swagger fuera de index.js
 const data = fs.readFileSync(path.join(__dirname,'./swagger.json'),{encoding:'utf8',flag:'r'})
