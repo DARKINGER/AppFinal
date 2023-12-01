@@ -13,7 +13,7 @@ const redoc = require('redoc-express')
 const request = require('supertest');//-----------------------SUPERTEST-----------------------
 const {PORT, HOST, USER, PASSWORD, DATABASE} = require('./config');
 // import { PORT,HOST,USER,PASSWORD,DATABASE, PORT } from './config';
-var con =  mysql.createConnection({
+const con =  mysql.createConnection({
     host:HOST, 
     user:USER, 
     password:PASSWORD, 
@@ -301,6 +301,8 @@ app.get(
 // Iniciar el servidor
 app.listen(PORT, ()=> {
     // console.log("Server express escuchando en el puerto 8085");
+console.log(HOST)
+
     console.log(`Server express escuchando en el puerto ${PORT}`);
 });
 
