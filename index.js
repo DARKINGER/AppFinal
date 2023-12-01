@@ -1,4 +1,4 @@
-const cores= require('cores')
+const cores= require('cors')
 const express = require('express');
 const morgan = require('morgan');
 const fs = require('fs');
